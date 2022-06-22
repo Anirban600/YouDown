@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block head %}
+<title>YouSuck</title>
+{% endblock head %} {% block body %}
+<div id="option_body">
+  <a href="{{ url_for('get_video') }}">
+    <div id="option_video" class="option"></div>
+  </a>
+  <a href="{{ url_for('get_playlist') }}">
+    <div id="option_playlist" class="option"></div>
+  </a>
+</div>
+{% endblock body %}

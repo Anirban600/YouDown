@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% block head %}
+<title>Done</title>
+{% endblock head %} {% block body %}
+<div id="stream_page">
+  <div id="video_face">
+    <div id="thumb">
+      <img src="{{ thumb }}" alt="Thumbnail" width="300px" />
+    </div>
+    <div id="video_title">{{ title }}</div>
+    <div id="video_length">Duration : {{ duration }}</div>
+  </div>
+
+  <form id="stream_form" action="/stream" method="post">
+    <div>
+      <div>
+        <h3>Avaliable Video Streams</h3>
+        <table id="stream">
+          <tr>
+            <th class="check"></th>
+            <th>Format</th>
+            <th>Quality</th>
+            <th class="size">Size</th>
+          </tr>
+          {% for s in streams %} {% if s[1] == "v" %}
+          <tr>
+            <td class="check">
+              <input type="radio" name="stream_choice" value="{{ s[0] }}" />
+            </td>
+            <td>{{ s[2] }}</td>
+            <td>{{ s[3] }}</td>
+            <td class="size">{{ s[4] }}</td>
+          </tr>
+          {% endif %} {% if s[1] == "u" %}
+          <tr style="background-color: rgba(255, 196, 133, 0.477);">
+            <td class="check">
+              <input type="radio" name="stream_choice" value="{{ s[0] }}" />
+            </td>
+            <td>{{ s[2] }}</td>
+            <td>{{ s[3] }}</td>
+            <td class="size">{{ s[4] }}</td>
+          </tr>
+          {% endif %} {% endfor %}
+        </table>
+      </div>
+      <div>
+        <h3>Avaliable Audio Streams</h3>
+        <table id="stream">
+          <tr>
+            <th class="check"></th>
+            <th>Format</th>
+            <th>Quality</th>
+            <th class="size">Size</th>
+          </tr>
+          {% for s in streams %} {% if s[1] == "a" %}
+          <tr>
+            <td class="check">
+              <input type="radio" name="stream_choice" value="{{ s[0] }}" />
+            </td>
+            <td>{{ s[2] }}</td>
+            <td>{{ s[3] }}</td>
+            <td class="size">{{ s[4] }}</td>
+          </tr>
+          {% endif %} {% endfor %}
+        </table>
+      </div>
+    </div>
+    <button type="submit">Download</button>
+  </form>
+</div>
+{% endblock body %}

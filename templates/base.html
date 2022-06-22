@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    {% block head %} {% endblock head %}
+  </head>
+  <body>
+    <nav id="nav">
+      <ul id="nav_ul">
+        <li>
+          <a href="{{ url_for('start') }}"
+            ><img
+              src="{{ url_for('static', filename='Images/YouSuck.png') }}"
+              alt="YouSuck"
+              width="130px"
+          /></a>
+        </li>
+        <li><a href="{{ url_for('start') }}">Home</a></li>
+        <li><a href="{{ url_for('get_video') }}">Video Download</a></li>
+        <li><a href="{{ url_for('get_playlist') }}">Playlist Download</a></li>
+      </ul>
+    </nav>
+    {% block body %} {% endblock body %}
+    <footer>
+      <a href="{{ url_for('start') }}"
+        ><img
+          src="{{ url_for('static', filename='Images/YouSuck.png') }}"
+          alt="YouSuck"
+          width="80px"
+      /></a>
+      <span id="copyright">Copyright @ 2022 YouSuck, Inc.</span>
+      <div>
+        <a class="legal" href="#">Legal Stuff</a>
+        <span id="vl">|</span>
+        <a class="legal" href="#">Privacy Policy</a>
+      </div>
+    </footer>
+  </body>
+</html>

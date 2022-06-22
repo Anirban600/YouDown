@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block head %}
+<title>Thank You</title>
+{% endblock head %} {% block body %}
+<div id="dnld">
+  <a href="./video" download="{{ name }}"
+    ><img
+      src="{{ url_for('static', filename='Images/new.png') }}"
+      alt="Download"
+      width="200px"
+  /></a>
+</div>
+{% endblock body %}
