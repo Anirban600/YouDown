@@ -159,7 +159,7 @@ footer{
 
 #stream_page{
     display: flex;
-    height: 84vh;
+    height: calc(84vh - 40px);
     justify-content: center;
     align-items: flex-start;
 }
@@ -193,7 +193,7 @@ footer{
 
 #stream_form{
     margin-left: 80px;
-    margin-top: 80px;
+    margin-top: 70px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -217,26 +217,32 @@ footer{
     background-color: rgba(255, 209, 255, 0.477);
     display:flex;
     align-items: center;
-    height: 30px;
+    height: 35px;
     margin-bottom: 7px;
     border-radius: 10px;
     cursor: pointer;
-    transition-duration: 0.4s;
+    transition-duration: 0.3s;
 }
 
 #stream tr:hover{
     background-color: rgb(255, 209, 255);
-    transform: scale(1.07);
+    transform: scale(1.08);
 }
 
 #stream td, th{
     padding-top: 1px;
     text-align: center;
-    width: 80px;
+    width: 75px;
 }
 
 #stream_form .check{
-    width: 50px;
+    width: 20px;
+    margin-left: 15px;
+}
+
+#stream_form .warn{
+    margin-left: 15px;
+    width: 20px;
 }
 
 #stream_form .size{
@@ -245,7 +251,7 @@ footer{
 
 #stream_form button{
     margin-left: 30px;
-    margin-top: 50px;
+    margin-top: 40px;
     border-radius: 15px;
     background-color: white;
     color: rgb(255, 154, 255);
@@ -265,6 +271,14 @@ footer{
     -webkit-box-shadow: 0px 9px 25px -5px rgba(0,0,0,0.8);
     -moz-box-shadow: 0px 9px 25px -5px rgba(0,0,0,0.8);
     box-shadow: 0px 9px 25px -5px rgba(0,0,0,0.8);
+}
+
+
+#warning {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
 }
 
 

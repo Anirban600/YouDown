@@ -55,7 +55,9 @@ def stream_manager(streams):
 
     max_audio_size = mem[all_qual[0]][4]
     for i in range(len(res)):
-        if res[i][1] == 'u': res[i][4] = res[i][4][:-2] + "+ " + max_audio_size
+        if res[i][1] == 'u':
+            res[i][2] = 'mp4'
+            res[i][4] = res[i][4][:-2] + "+ " + max_audio_size
 
     return res
 
@@ -94,7 +96,7 @@ def get_stream():
 @app.route('/download_video', methods=['POST', 'GET'])
 def get_download():
     name = video.streams[int(choice)].default_filename
-    video.streams[int(choice)].download(".", "video")
+    video.streams[int(choice)].download(".\\static\\", "video.mp4")
     return render_template('download_video.html', name=name)
 
 
@@ -104,4 +106,5 @@ def get_playlist():
 
 
 if __name__ == "__main__":
+    # app.run(debug=True, port=8080)
     app.run(debug=True, port=process.env.PORT)
