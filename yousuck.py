@@ -97,7 +97,7 @@ def get_stream():
 def get_download():
     name = video.streams[int(choice)].default_filename
     name = name.replace(' ', '_')
-    video.streams[int(choice)].download(".\\static", name)
+    video.streams[int(choice)].download("/app/static/", name)
     return render_template('download_video.html', name=name)
 
 
