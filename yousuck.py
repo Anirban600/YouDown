@@ -1,3 +1,4 @@
+import subprocess
 import pytube, time, os
 from flask import Flask, redirect, render_template, request, url_for
 
@@ -72,9 +73,14 @@ def get_video():
     if request.method == 'POST':
         global video
         global streams
+        global max_audio
         link = request.form['link']
         video = pytube.YouTube(link)
         streams = stream_manager(video.streams)
+        for i in streams:
+            if i[1] == 'a':
+                max_audio = i[0]
+                break
         return redirect(url_for('get_stream'))
     return render_template('video.html')
 
@@ -95,8 +101,23 @@ def get_stream():
 
 @app.route('/download_video', methods=['POST', 'GET'])
 def get_download():
+    # path = ".\\static\\"
+    path = "/app/static/"
+    for file in os.listdir(path):
+        if file[-4:] == ".mp4": os.remove(path+file)
     name = video.streams[int(choice)].default_filename
-    video.streams[int(choice)].download("/app/static/", name)
+    stream = str(video.streams[int(choice)])
+    if stream.find('acodec') != -1:
+        video.streams[int(choice)].download(path, name)
+    else:
+        name = name.replace('webm', 'mp4')
+        video.streams[int(choice)].download(path, "video")
+        video.streams[max_audio].download(path, "audio")
+        cmd = f'ffmpeg -i {path}video -i {path}audio -c:v copy -c:a aac {path}output.mp4'
+        subprocess.run(cmd.split(' '), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        os.rename(rf"{path}output.mp4", rf"{path}{name}")
+        os.remove(rf"{path}video")
+        os.remove(rf"{path}audio")
     return render_template('download_video.html', name=name)
 
 
@@ -108,3 +129,6 @@ def get_playlist():
 if __name__ == "__main__":
     # app.run(debug=True, port=8080)
     app.run(debug=True, port=process.env.PORT)
+
+
+# ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac output.mp4
