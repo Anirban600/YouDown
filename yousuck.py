@@ -96,8 +96,7 @@ def get_stream():
 @app.route('/download_video', methods=['POST', 'GET'])
 def get_download():
     name = video.streams[int(choice)].default_filename
-    video.streams[int(choice)].download(".")
-    os.system(rf'mv "{name}" .\static')
+    video.streams[int(choice)].download(".\\static")
     return render_template('download_video.html', name=name)
 
 
@@ -107,5 +106,5 @@ def get_playlist():
 
 
 if __name__ == "__main__":
-    # app.run(debug=True, port=8080)
-    app.run(debug=True, port=process.env.PORT)
+    app.run(debug=True, port=8080)
+    # app.run(debug=True, port=process.env.PORT)
