@@ -96,7 +96,6 @@ def get_stream():
 @app.route('/download_video', methods=['POST', 'GET'])
 def get_download():
     name = video.streams[int(choice)].default_filename
-    name = name.replace(' ', '_')
     video.streams[int(choice)].download("/app/static/", name)
     return render_template('download_video.html', name=name)
 
