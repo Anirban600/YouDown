@@ -1,4 +1,4 @@
-import pytube, time
+import pytube, time, os
 from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
@@ -96,7 +96,8 @@ def get_stream():
 @app.route('/download_video', methods=['POST', 'GET'])
 def get_download():
     name = video.streams[int(choice)].default_filename
-    video.streams[int(choice)].download(".\\static\\", "video.mp4")
+    video.streams[int(choice)].download(".")
+    os.system(rf'move "{name}" .\static')
     return render_template('download_video.html', name=name)
 
 
