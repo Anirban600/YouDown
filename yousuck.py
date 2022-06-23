@@ -97,7 +97,7 @@ def get_stream():
 def get_download():
     name = video.streams[int(choice)].default_filename
     video.streams[int(choice)].download(".")
-    os.system(rf'move "{name}" .\static')
+    os.system(rf'mv "{name}" .\static')
     return render_template('download_video.html', name=name)
 
 
