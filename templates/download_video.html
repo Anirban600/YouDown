@@ -2,7 +2,7 @@
 <title>Thank You</title>
 {% endblock head %} {% block body %}
 <div id="dnld">
-  <a href="{{ url_for('static', filename='video.mp4') }}" download
+  <a href="{{ url_for('static', filename='video.mp4') }}" download="{{ name }}"
     ><img
       src="{{ url_for('static', filename='Images/new.png') }}"
       alt="Download"
