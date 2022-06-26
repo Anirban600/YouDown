@@ -1,12 +1,30 @@
 {% extends 'base.html' %} {% block head %}
 <title>YouSuck</title>
 {% endblock head %} {% block body %}
+<p id="heading-start">
+  Welcome to YouSuck.<br />
+  Please choose what you want to download
+</p>
+
 <div id="option_body">
   <a href="{{ url_for('get_video') }}">
-    <div id="option_video" class="option"></div>
+    <div id="option_video" class="option">
+      <img
+        src="{{ url_for('static', filename='Images/yt_logo.svg') }}"
+        alt="yt_logo"
+      />
+      <p>Download Video</p>
+    </div>
   </a>
   <a href="{{ url_for('get_playlist') }}">
-    <div id="option_playlist" class="option"></div>
+    <div id="option_playlist" class="option">
+      <img
+        src="{{ url_for('static', filename='Images/pl_logo.png') }}"
+        alt="yt_logo"
+      />
+      <p>Download Playlist</p>
+    </div>
   </a>
 </div>
+
 {% endblock body %}

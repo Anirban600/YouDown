@@ -8,9 +8,24 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
     {% block head %} {% endblock head %}
   </head>
   <body>
+    <div class="video-container">
+      <video autoplay muted loop>
+        <source
+          src="{{ url_for('static', filename='Images/save.mp4') }}"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+
     <nav id="nav">
       <ul id="nav_ul">
         <li>

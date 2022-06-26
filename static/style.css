@@ -1,13 +1,55 @@
 /* Global */
+:root {
+    --level_0: rgb(255, 255, 255);
+    --level_1: rgb(255, 228, 248);
+    --level_2: rgb(255, 199, 242);
+    --level_3: rgb(255, 171, 236);
+    --level_4: rgb(255, 142, 230);
+    --level_5: rgb(255, 114, 224);
+    --level_6: rgb(255, 85, 218);
+    --level_7: rgb(255, 57, 212);
+    --level_8: rgb(255, 28, 206);
+    --level_9: rgb(255, 0, 200);
+}
+
 
 * {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    user-select: none;
 }
 
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--level_0);
+}
+/* Backgound Video */
+
+.video-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-container video {
+    /* Make video to at least 100% wide and tall */
+    min-width: 100%; 
+    min-height: 100%; 
+  
+    /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+    width: auto;
+    height: auto;
+  
+    /* Center the video */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 /* Navigation Bar */
@@ -15,10 +57,8 @@ body {
 #nav {
     height: 50px;
     border-radius: 0 0 20px 20px;
-    background: linear-gradient(to bottom, rgb(255, 80, 255), rgb(199, 0, 199));
-    -webkit-box-shadow: 0px 8px 27px 0px rgba(0,0,0,0.46);
-    -moz-box-shadow: 0px 8px 27px 0px rgba(0,0,0,0.46);
-    box-shadow: 0px 8px 27px 0px rgba(0,0,0,0.46);
+    background: linear-gradient(to bottom, var(--level_5), var(--level_9));
+    box-shadow: 0px 8px 27px 0px rgba(0,0,0,0.8);
 }
 
 #nav_ul{
@@ -38,19 +78,21 @@ body {
 }
 
 #nav_ul li a {
-    color: rgb(241, 241, 241);
-    text-decoration: none;
+    color: var(--level_1);
 }
 
 /* Footer */
 
 footer{
+    position: fixed;
+    top: calc(100vh - 70px);
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 70px;
-    background-color: rgba(255, 80, 255, 0.1);
+    background-color: var(--level_2);
 }
 
 #copyright{
@@ -71,38 +113,73 @@ footer{
 
 /* Start Page */
 
+#heading-start, #heading-video {
+    top: 18%;
+    width: 100vw;
+    color: var(--level_9);
+    position: fixed;
+    font-size: 3.5em;
+    font-weight: 900;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+}
+
 #option_body {
+    position: absolute;
+    top: 40%;
+    width: 100vw;
     display: flex;
-    /* background-color: rgb(124, 124, 255); */
-    height: 84vh;
+    height: calc(var(--w_height) - 180px);
     align-items: center;
-    justify-content: center;
-    
+    justify-content:space-evenly;
 }
 
 .option {
     height: 250px;
     width: 250px;
-    border: 1px solid black;
-    border-radius: 30px;
+    background-color: var(--level_0);
+    border: 15px solid var(--level_2);
+    border-radius: 40px;
     transition-duration: 0.3s;
     cursor: pointer;
 }
 
 .option:hover{
+    border: 15px solid var(--level_4);
     -webkit-box-shadow: 0px 25px 47px 0px rgba(0,0,0,0.93);
     -moz-box-shadow: 0px 25px 47px 0px rgba(0,0,0,0.93);
     box-shadow: 0px 25px 47px 0px rgba(0,0,0,0.93);
 }
 
-#option_video {
-    margin-right: calc((100vw - 500px) / 3);
+#option_video > img{
+    margin-left: 35px;
+    width: 180px;
+}
+
+#option_playlist > img{
+    margin: 25px;
+    width: 200px;
+}
+
+#option_body p{
+    color: var(--level_8);
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+    font-weight: bold;
+    width: 250px;
+    text-align: center;
 }
 
 /* Video Page */
 
+#heading-video{
+    top: 28%;
+}
+
 #get_vid_link{
-    height: 84vh;
+    position: fixed;
+    top: 45%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,36 +187,38 @@ footer{
 }
 
 #get_vid_link input{
-    /* background-color: aqua; */
-    border: 8px solid rgba(255, 154, 255, 0.507);
+    border: 9px solid var(--level_2);
     border-radius: 18px;
     width: 50vw;
     height: 35px;
     font-size: 1.25em;
-    padding-left: 10px;
+    padding-left: 11px;
     font-weight: bold;
-    color: rgb(177, 177, 177);
+    color: rgb(0, 0, 0);
     -webkit-box-shadow: 0px 9px 25px -5px rgba(0,0,0,0.8);
     -moz-box-shadow: 0px 9px 25px -5px rgba(0,0,0,0.8);
     box-shadow: 0px 9px 25px -5px rgba(0,0,0,0.8);
+    transition-duration: 0.3s;
+}
+
+#get_vid_link input:focus{
+    outline: none;
+    border: 9px solid var(--level_4);
 }
 
 #get_vid_link input::placeholder{
     color: rgb(198, 198, 198);
 }
 
-#get_vid_link input:focus{
-    outline: none;
-}
-
 #get_vid_link button{
-    margin-top: 50px;
+    position: fixed;
+    top: 58%;
     border-radius: 25px;
-    background-color: white;
-    color: rgb(255, 154, 255);
+    background-color: var(--level_0);
+    color: var(--level_4);
     font-size: 1.02em;
     font-weight: bold;
-    border: 3px solid rgb(255, 154, 255);
+    border: 3px solid var(--level_4);
     height: 50px;
     width: 140px;
     transition-duration: 0.2s;
@@ -147,7 +226,7 @@ footer{
 }
 
 #get_vid_link button:hover{
-    background-color: rgba(255, 154, 255, 0.679);
+    background-color: var(--level_3);
     color: white;
     border: 5px solid white;
     -webkit-box-shadow: 0px 9px 25px -5px rgba(0,0,0,0.8);
@@ -159,19 +238,16 @@ footer{
 
 #stream_page{
     display: flex;
-    height: calc(84vh - 40px);
     justify-content: center;
     align-items: flex-start;
 }
 
-
-
 #video_face{
     padding: 10px;
     margin-top: 130px;
-    background-color: rgba(255, 209, 255, 0.477);
+    background-color: var(--level_2);
     border-radius: 20px;
-    border: 1px solid rgba(255, 153, 255, 0.679);
+    border: 1px solid rgb(255, 153, 201);
     width: 300px;
     -webkit-box-shadow: 0px 10px 38px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 10px 38px -6px rgba(0,0,0,0.75);
@@ -214,7 +290,7 @@ footer{
 }
 
 #stream tr{
-    background-color: rgba(255, 209, 255, 0.477);
+    background-color: rgb(255, 209, 200);
     display:flex;
     align-items: center;
     height: 35px;
@@ -225,7 +301,7 @@ footer{
 }
 
 #stream tr:hover{
-    background-color: rgb(255, 209, 255);
+    background-color: rgb(255, 209, 200);
     transform: scale(1.08);
 }
 
@@ -254,10 +330,10 @@ footer{
     margin-top: 40px;
     border-radius: 15px;
     background-color: white;
-    color: rgb(255, 154, 255);
+    color: rgb(255, 154, 200);
     font-size: 1em;
     font-weight: bold;
-    border: 3px solid rgb(255, 154, 255);
+    border: 3px solid rgb(255, 154, 200);
     height: 35px;
     width: 140px;
     transition-duration: 0.2s;
@@ -265,7 +341,7 @@ footer{
 }
 
 #stream_form button:hover{
-    background-color: rgba(255, 153, 255, 0.679);
+    background-color: rgb(255, 153, 201);
     color: white;
     border: 5px solid white;
     -webkit-box-shadow: 0px 9px 25px -5px rgba(0,0,0,0.8);

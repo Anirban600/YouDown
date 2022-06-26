@@ -101,8 +101,8 @@ def get_stream():
 
 @app.route('/download_video', methods=['POST', 'GET'])
 def get_download():
-    # path = ".\\static\\"
-    path = "/app/static/"
+    path = ".\\static\\"
+    # path = "/app/static/"
     for file in os.listdir(path):
         if file[-4:] == ".mp4": os.remove(path+file)
     name = video.streams[int(choice)].default_filename
@@ -127,8 +127,5 @@ def get_playlist():
 
 
 if __name__ == "__main__":
-    # app.run(debug=True, port=8080)
-    app.run(debug=True, port=process.env.PORT)
-
-
-# ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac output.mp4
+    app.run(debug=True, port=8080)
+    # app.run(debug=True, port=process.env.PORT)

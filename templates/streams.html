@@ -68,10 +68,16 @@
     <button type="submit">Download</button>
   </form>
 </div>
-<div id="warning"><img
-  src="{{ url_for('static', filename='Images/warn.png') }}"
-  alt="warn"
-  width="20px"
-/> <pre>   For these streams, we need to merge visual and audio streams avaliable.
-</pre></div>
+
+<div id="warning">
+  <img
+    src="{{ url_for('static', filename='Images/warn.png') }}"
+    alt="warn"
+    width="20px"
+  />
+  <pre>
+For these streams, we need to merge visual and audio streams avaliable.
+</pre
+  >
+</div>
 {% endblock body %}
