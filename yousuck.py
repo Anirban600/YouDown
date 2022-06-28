@@ -75,7 +75,10 @@ def get_video():
         global streams
         global max_audio
         link = request.form['link']
-        video = pytube.YouTube(link)
+        try:
+            video = pytube.YouTube(link)
+        except:
+            print("bad url")
         streams = stream_manager(video.streams)
         for i in streams:
             if i[1] == 'a':
