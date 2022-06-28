@@ -203,11 +203,32 @@ footer{
 
 #get_vid_link input:focus{
     outline: none;
-    border: 9px solid var(--level_4);
+    border: 9px solid var(--level_5);
 }
 
 #get_vid_link input::placeholder{
     color: rgb(198, 198, 198);
+}
+
+@keyframes shake {
+    0% { border: 9px solid var(--level_2); transform: translate(10px, 0) scale(1.05); } 
+    10% { border: 9px solid var(--level_3); transform: translate(-10px, 0) scale(1.1); }
+    20% { border: 9px solid var(--level_4); transform: translate(-8px, 0) scale(1.15); }
+    30% { border: 9px solid var(--level_5); transform: translate(8px, 0) scale(1.2); }
+    40% { border: 9px solid var(--level_6); transform: translate(-6px, 0) scale(1.2); }
+    50% { border: 9px solid var(--level_6); transform: translate(6px, 0) scale(1.167); }
+    60% { border: 9px solid var(--level_5); transform: translate(-4px, 0) scale(1.133); }
+    70% { border: 9px solid var(--level_5); transform: translate(4px, 0) scale(1.1); }
+    80% { border: 9px solid var(--level_4); transform: translate(-2px, 0) scale(1.067); }
+    90% { border: 9px solid var(--level_3); transform: translate(2px, 0) scale(1.033); }
+    100% { border: 9px solid var(--level_2); transform: translate(0px, 0) scale(1); }
+}
+
+.shake {
+    animation-name: shake;
+    animation-duration: 1s;
+    transform-origin: 50% 50%;
+    animation-iteration-count: 1;
 }
 
 #get_vid_link button{

@@ -2,7 +2,24 @@
 <title>Get Video</title>
 {% endblock head %} {% block body %}
 <p id="heading-video">Enter the YouTube Link of the Video</p>
-<form id="get_vid_link" action="/video" method="post">
+<script>
+  function checker() {
+    link = document.getElementById("link");
+    if (link.value.length == 0) {
+      link.classList.remove("shake");
+      void link.offsetWidth;
+      link.classList.add("shake");
+      return false;
+    }
+    return true;
+  }
+</script>
+<form
+  id="get_vid_link"
+  action="/video"
+  method="post"
+  onsubmit="return checker()"
+>
   <input
     type="text"
     name="link"
