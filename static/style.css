@@ -241,7 +241,7 @@ footer{
 }
 
 #get_vid_link button:hover{
-    background-color: var(--level_3);
+    background-color: var(--level_4);
     color: white;
     border: 5px solid white;
     -webkit-box-shadow: 0px 9px 25px -5px rgba(0,0,0,0.8);
