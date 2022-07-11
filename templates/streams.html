@@ -12,7 +12,7 @@
 
   <script>
     function myfun(val) {
-      obj = document.getElementById(val.toString());
+      obj = document.getElementById(val);
       obj.checked = true;
     }
   </script>
@@ -30,7 +30,7 @@
             <th class="size">Size</th>
           </tr>
           {% for s in streams %} {% if s[1] == "v" or s[1] == "u" %}
-          <tr onclick="myfun({{s[0]}})">
+          <tr onclick="myfun('{{s[0]}}')">
             <td class="check">
               <input
                 id="{{s[0]}}"
@@ -65,7 +65,7 @@
             <th class="size">Size</th>
           </tr>
           {% for s in streams %} {% if s[1] == "a" %}
-          <tr onclick="myfun({{s[0]}})">
+          <tr onclick="myfun('{{s[0]}}')">
             <td class="check">
               <input
                 id="{{ s[0] }}"
