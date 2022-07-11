@@ -10,6 +10,13 @@
     <div id="video_length">Duration : {{ duration }}</div>
   </div>
 
+  <script>
+    function myfun(val) {
+      obj = document.getElementById(val.toString());
+      obj.checked = true;
+    }
+  </script>
+
   <form id="stream_form" action="/stream" method="post">
     <div>
       <div>
@@ -23,9 +30,14 @@
             <th class="size">Size</th>
           </tr>
           {% for s in streams %} {% if s[1] == "v" or s[1] == "u" %}
-          <tr>
+          <tr onclick="myfun({{s[0]}})">
             <td class="check">
-              <input type="radio" name="stream_choice" value="{{ s[0] }}" />
+              <input
+                id="{{s[0]}}"
+                type="radio"
+                name="stream_choice"
+                value="{{ s[0] }}"
+              />
             </td>
             <td class="warn">
               {% if s[1] == "u" %}
@@ -53,9 +65,14 @@
             <th class="size">Size</th>
           </tr>
           {% for s in streams %} {% if s[1] == "a" %}
-          <tr>
+          <tr onclick="myfun({{s[0]}})">
             <td class="check">
-              <input type="radio" name="stream_choice" value="{{ s[0] }}" />
+              <input
+                id="{{ s[0] }}"
+                type="radio"
+                name="stream_choice"
+                value="{{ s[0] }}"
+              />
             </td>
             <td>{{ s[2] }}</td>
             <td>{{ s[3] }}</td>

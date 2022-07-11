@@ -29,4 +29,8 @@
   <button type="submit">Get Video</button>
 </form>
 
-{% endblock body %}
+{% if warn == True %}
+<div id="bad_link">
+  <p>Entered URL is invalid or Video not Found</p>
+</div>
+{% endif %} {% endblock body %}

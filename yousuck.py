@@ -78,14 +78,15 @@ def get_video():
         try:
             video = pytube.YouTube(link)
         except:
-            print("bad url")
-        streams = stream_manager(video.streams)
-        for i in streams:
-            if i[1] == 'a':
-                max_audio = i[0]
-                break
-        return redirect(url_for('get_stream'))
-    return render_template('video.html')
+            return render_template('video.html', warn=True)
+        else:
+            streams = stream_manager(video.streams)
+            for i in streams:
+                if i[1] == 'a':
+                    max_audio = i[0]
+                    break
+            return redirect(url_for('get_stream'))
+    return render_template('video.html', warn=False)
 
 
 @app.route('/stream', methods=['POST', 'GET'])
@@ -131,4 +132,3 @@ def get_playlist():
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
-    # app.run(debug=True, port=process.env.PORT)
