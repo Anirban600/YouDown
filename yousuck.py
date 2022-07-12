@@ -5,7 +5,7 @@ from flask import Flask, redirect, render_template, request, url_for
 app = Flask(__name__)
 
 
-def stream_manager(streams):
+def video_stream_manager(streams):
     def num_trim(s):
         res = ''
         for c in s:
@@ -63,86 +63,93 @@ def stream_manager(streams):
     return res
 
 
+def playlist_stream_manager(playlist):
+    pass
+
+
 @app.route('/')
 def start():
-    return render_template('start.html')
+    return render_template('index.html')
 
 
-@app.route('/video', methods=['POST', 'GET'])
-def get_video():
+@app.route('/video_link', methods=['POST', 'GET'])
+def get_video_link():
     if request.method == 'POST':
-        global video
-        global streams
-        global max_audio
-        link = request.form['link']
+        global video_obj
+        global video_streams
+        global Video_max_audio
+        link = request.form['video_link']
         try:
-            video = pytube.YouTube(link)
+            video_obj = pytube.YouTube(link)
         except:
-            return render_template('video.html', warn=True)
+            return render_template('video_link.html', warn=True)
         else:
-            streams = stream_manager(video.streams)
-            for i in streams:
+            video_streams = video_stream_manager(video_obj.streams)
+            for i in video_streams:
                 if i[1] == 'a':
-                    max_audio = i[0]
+                    Video_max_audio = i[0]
                     break
-            return redirect(url_for('get_stream'))
-    return render_template('video.html', warn=False)
+            return redirect(url_for('get_video_streams'))
+    return render_template('video_link.html', warn=False)
 
 
-@app.route('/stream', methods=['POST', 'GET'])
-def get_stream():
+@app.route('/video_streams', methods=['POST', 'GET'])
+def get_video_streams():
     if request.method == 'POST':
-        global choice
-        choice = request.form['stream_choice']
-        return redirect(url_for('get_download'))
-    return render_template('streams.html',
-                           title=video.title,
-                           thumb=video.thumbnail_url,
+        global video_stream_choice
+        video_stream_choice = request.form['stream_choice']
+        return redirect(url_for('get_video_download'))
+    return render_template('video_streams.html',
+                           title=video_obj.title,
+                           thumb=video_obj.thumbnail_url,
                            duration=time.strftime(
-                               '%H:%M:%S', time.gmtime(video.length)),
-                           streams=streams)
+                               '%H:%M:%S', time.gmtime(video_obj.length)),
+                           streams=video_streams)
 
 
-@app.route('/download_video', methods=['POST', 'GET'])
-def get_download():
+@app.route('/video_download', methods=['POST', 'GET'])
+def get_video_download():
     path = "./static/"
     for file in os.listdir(path):
         if file[-4:] == ".mp4": os.remove(path+file)
-    name = video.streams[int(choice)].default_filename
-    stream = str(video.streams[int(choice)])
+    name = video_obj.streams[int(video_stream_choice)].default_filename
+    stream = str(video_obj.streams[int(video_stream_choice)])
     if stream.find('acodec') != -1:
-        video.streams[int(choice)].download(path, name)
+        video_obj.streams[int(video_stream_choice)].download(path, name)
     else:
         name = name.replace('webm', 'mp4')
-        video.streams[int(choice)].download(path, "video")
-        video.streams[max_audio].download(path, "audio")
+        video_obj.streams[int(video_stream_choice)].download(path, "video")
+        video_obj.streams[Video_max_audio].download(path, "audio")
         cmd = f'ffmpeg -i {path}video -i {path}audio -c:v copy -c:a aac {path}output.mp4'
         subprocess.run(cmd.split(' '), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         os.rename(rf"{path}output.mp4", rf"{path}{name}")
         os.remove(rf"{path}video")
         os.remove(rf"{path}audio")
-    return render_template('download_video.html', name=name)
+    return render_template('video_download.html', name=name)
 
 
-@app.route('/playlist')
-def get_playlist():
+@app.route('/playlist_link', methods=['POST', 'GET'])
+def get_playlist_link():
     if request.method == 'POST':
-        global video
-        global streams
-        global max_audio
-        link = request.form['link']
+        global playlist_obj
+        global playlist_videoss
+        link = request.form['playlist_link']
         try:
-            video = pytube.YouTube(link)
+            playlist_obj = pytube.Playlist(link)
+            print(link, playlist_obj, "passed")
+            if not playlist_obj: raise Exception('Fraud URL')
+
         except:
-            return render_template('video.html', warn=True)
+            return render_template('playlist_link.html', warn=True)
         else:
-            streams = stream_manager(video.streams)
-            for i in streams:
-                if i[1] == 'a':
-                    max_audio = i[0]
-                    break
-            return redirect(url_for('get_stream'))
-    return render_template('playlist.html')
+            playlist_videoss = playlist_stream_manager(playlist_obj)
+            return redirect(url_for('get_playlist_streams'))
+    return render_template('playlist_link.html')
+
+
+@app.route('/playlist_streams', methods=['POST', 'GET'])
+def get_playlist_streams():
+    return "Hello World"
 
 
 if __name__ == "__main__":

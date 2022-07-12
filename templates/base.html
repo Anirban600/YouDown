@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='assets/style.css') }}"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,7 +20,7 @@
     <div class="video-container">
       <video autoplay muted loop>
         <source
-          src="{{ url_for('static', filename='Images/save.mp4') }}"
+          src="{{ url_for('static', filename='assets/save.mp4') }}"
           type="video/mp4"
         />
       </video>
@@ -31,21 +31,23 @@
         <li>
           <a href="{{ url_for('start') }}"
             ><img
-              src="{{ url_for('static', filename='Images/YouSuck.png') }}"
+              src="{{ url_for('static', filename='assets/YouSuck.png') }}"
               alt="YouSuck"
               width="130px"
           /></a>
         </li>
         <li><a href="{{ url_for('start') }}">Home</a></li>
-        <li><a href="{{ url_for('get_video') }}">Video Download</a></li>
-        <li><a href="{{ url_for('get_playlist') }}">Playlist Download</a></li>
+        <li><a href="{{ url_for('get_video_link') }}">Video Download</a></li>
+        <li>
+          <a href="{{ url_for('get_playlist_link') }}">Playlist Download</a>
+        </li>
       </ul>
     </nav>
     {% block body %} {% endblock body %}
     <footer>
       <a href="{{ url_for('start') }}"
         ><img
-          src="{{ url_for('static', filename='Images/YouSuck.png') }}"
+          src="{{ url_for('static', filename='assets/YouSuck.png') }}"
           alt="YouSuck"
           width="80px"
       /></a>

@@ -1,13 +1,13 @@
 {% extends 'base.html' %} {% block head %}
-<title>Done</title>
+<title>Choose Video Quality</title>
 {% endblock head %} {% block body %}
-<div id="stream_page">
-  <div id="video_face">
-    <div id="thumb">
+<div id="video_stream_page">
+  <div id="video_stream_face">
+    <div id="video_stream_thumbnail">
       <img src="{{ thumb }}" alt="Thumbnail" width="300px" />
     </div>
-    <div id="video_title">{{ title }}</div>
-    <div id="video_length">Duration : {{ duration }}</div>
+    <div id="video_stream_title">{{ title }}</div>
+    <div id="video_stream_length">Duration : {{ duration }}</div>
   </div>
 
   <script>
@@ -17,11 +17,11 @@
     }
   </script>
 
-  <form id="stream_form" action="/stream" method="post">
+  <form id="video_stream_form" action="/video_streams" method="post">
     <div>
       <div>
         <h3>Avaliable Video Streams</h3>
-        <table id="stream">
+        <table id="video_stream_videos" class="video_streams">
           <tr>
             <th class="check"></th>
             <th class="warn"></th>
@@ -30,10 +30,10 @@
             <th class="size">Size</th>
           </tr>
           {% for s in streams %} {% if s[1] == "v" or s[1] == "u" %}
-          <tr onclick="myfun('{{s[0]}}')">
+          <tr onclick="myfun('video_stream_{{s[0]}}')">
             <td class="check">
               <input
-                id="{{s[0]}}"
+                id="video_stream_{{s[0]}}"
                 type="radio"
                 name="stream_choice"
                 value="{{ s[0] }}"
@@ -42,7 +42,7 @@
             <td class="warn">
               {% if s[1] == "u" %}
               <img
-                src="{{ url_for('static', filename='Images/warn.png') }}"
+                src="{{ url_for('static', filename='assets/warn.png') }}"
                 alt="warn"
                 width="20px"
               />
@@ -57,7 +57,7 @@
       </div>
       <div>
         <h3>Avaliable Audio Streams</h3>
-        <table id="stream">
+        <table id="video_stream_audios" class="video_streams">
           <tr>
             <th class="check"></th>
             <th>Format</th>
@@ -65,10 +65,10 @@
             <th class="size">Size</th>
           </tr>
           {% for s in streams %} {% if s[1] == "a" %}
-          <tr onclick="myfun('{{s[0]}}')">
+          <tr onclick="myfun('video_stream_{{s[0]}}')">
             <td class="check">
               <input
-                id="{{ s[0] }}"
+                id="video_stream_{{ s[0] }}"
                 type="radio"
                 name="stream_choice"
                 value="{{ s[0] }}"
@@ -86,9 +86,9 @@
   </form>
 </div>
 
-<div id="warning">
+<div id="video_stream_warning">
   <img
-    src="{{ url_for('static', filename='Images/warn.png') }}"
+    src="{{ url_for('static', filename='assets/warn.png') }}"
     alt="warn"
     width="20px"
   />

@@ -12,7 +12,6 @@
     --level_9: rgb(255, 0, 200);
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -24,6 +23,10 @@
 body {
     background-color: var(--level_0);
 }
+
+
+
+
 /* Backgound Video */
 
 .video-container {
@@ -51,6 +54,9 @@ body {
     left: 50%;
     transform: translate(-50%,-50%);
 }
+
+
+
 
 /* Navigation Bar */
 
@@ -80,6 +86,9 @@ body {
 #nav_ul li a {
     color: var(--level_1);
 }
+
+
+
 
 /* Footer */
 
@@ -111,9 +120,12 @@ footer{
     color:rgb(85, 85, 85);
 }
 
-/* Start Page */
 
-#heading-start, #heading-video {
+
+
+/* Index Page */
+
+#index_heading, #video_link_heading, #playlist_link_heading{
     top: 18%;
     width: 100vw;
     color: var(--level_9);
@@ -124,7 +136,7 @@ footer{
     font-family: 'Dancing Script', cursive;
 }
 
-#option_body {
+#index_option_body {
     position: absolute;
     top: 42%;
     width: 100vw;
@@ -135,7 +147,7 @@ footer{
     justify-content:space-evenly;
 }
 
-.option {
+.index_option {
     height: 250px;
     width: 250px;
     background-color: var(--level_0);
@@ -145,7 +157,7 @@ footer{
     cursor: pointer;
 }
 
-.option:hover{
+.index_option:hover{
     border: 15px solid var(--level_4);
     -webkit-box-shadow: 0px 25px 47px 0px rgba(0,0,0,0.93);
     -moz-box-shadow: 0px 25px 47px 0px rgba(0,0,0,0.93);
@@ -153,17 +165,17 @@ footer{
     transform: scale(1.1);
 }
 
-#option_video > img{
+#index_option_video > img{
     margin-left: 35px;
     width: 180px;
 }
 
-#option_playlist > img{
+#index_option_playlist > img{
     margin: 25px;
     width: 200px;
 }
 
-#option_body p{
+#index_option_body p{
     color: var(--level_8);
     font-family: 'Dancing Script', cursive;
     font-size: 2em;
@@ -172,13 +184,16 @@ footer{
     text-align: center;
 }
 
-/* Video Page */
 
-#heading-video{
+
+
+/* Video Link Page , Playlist Link Page*/
+
+#video_link_heading, #playlist_link_heading{
     top: 28%;
 }
 
-.get_link{
+.link_form{
     position: fixed;
     top: 45%;
     width: 100vw;
@@ -188,7 +203,7 @@ footer{
     align-items: center;
 }
 
-.get_link input{
+.link_form input{
     border: 9px solid var(--level_2);
     border-radius: 18px;
     width: 50vw;
@@ -203,12 +218,12 @@ footer{
     transition-duration: 0.3s;
 }
 
-.get_link input:focus{
+.link_form input:focus{
     outline: none;
     border: 9px solid var(--level_5);
 }
 
-.get_link input::placeholder{
+.link_form input::placeholder{
     color: rgb(198, 198, 198);
 }
 
@@ -225,7 +240,7 @@ footer{
     animation-iteration-count: 1;
 }
 
-.get_link button{
+.link_form button{
     position: fixed;
     top: 58%;
     border-radius: 25px;
@@ -240,7 +255,7 @@ footer{
     cursor: pointer;
 }
 
-.get_link button:hover{
+.link_form button:hover{
     background-color: var(--level_4);
     color: var(--level_0);
     border: 5px solid var(--level_0);
@@ -256,7 +271,7 @@ footer{
     100% {transform: translate(0, -30vh);}
 }
 
-#bad_link{
+.link_error{
     margin-left: calc((100vw - 236px) / 2);
     padding: 0 20px;
     position: fixed;
@@ -271,21 +286,24 @@ footer{
     animation: warn 3.2s ease-in-out 0.2s 1 normal none;
 }
 
-#bad_link > p {
+.link_error > p {
     margin-top: 33px;
     color: var(--level_0);
     font-weight: bold;
 }
 
+
+
+
 /* Video Streams Page */
 
-#stream_page{
+#video_stream_page{
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
-#video_face{
+#video_stream_face{
     padding: 10px;
     margin-top: 130px;
     background-color: var(--level_2);
@@ -296,20 +314,18 @@ footer{
     box-shadow: 0px 29px 54px 0px rgba(0,0,0,0.8);
 }
 
-#video_face img{
+#video_stream_face img{
     border-radius: 15px;
 }
 
-#video_title, #video_length {
+#video_stream_title, #video_stream_length {
     text-align: center;
     margin-top: 10px;
     font-weight: bold;
     font-size: 1.1em;
 }
 
-
-
-#stream_form{
+#video_stream_form{
     margin-left: 80px;
     margin-top: 70px;
     display: flex;
@@ -317,21 +333,21 @@ footer{
     flex-direction: column;
 }
 
-#stream_form > div{
+#video_stream_form > div{
     display: flex;
     justify-content: center;
 }
 
-#stream_form > div > div{
+#video_stream_form > div > div{
     margin-left: 30px;
 }
 
-#stream_form h3{
+#video_stream_form h3{
     text-align: center;
     margin-bottom: 18px;
 }
 
-#stream tr{
+.video_streams tr{
     background-color: var(--level_1);
     display:flex;
     align-items: center;
@@ -342,32 +358,32 @@ footer{
     transition-duration: 0.3s;
 }
 
-#stream tr:hover{
+.video_streams tr:hover{
     background-color: var(--level_2);
     transform: scale(1.08);
 }
 
-#stream td, th{
+.video_streams td, th{
     padding-top: 1px;
     text-align: center;
     width: 75px;
 }
 
-#stream_form .check{
+#video_stream_form .check{
     width: 20px;
     margin-left: 15px;
 }
 
-#stream_form .warn{
+#video_stream_form .warn{
     margin-left: 15px;
     width: 20px;
 }
 
-#stream_form .size{
+#video_stream_form .size{
     width: 150px;
 }
 
-#stream_form button{
+#video_stream_form button{
     margin-left: 70px;
     margin-top: 40px;
     border-radius: 25px;
@@ -382,7 +398,7 @@ footer{
     cursor: pointer;
 }
 
-#stream_form button:hover{
+#video_stream_form button:hover{
     background-color: var(--level_5);
     color: var(--level_0);
     border: 5px solid var(--level_0);
@@ -392,7 +408,7 @@ footer{
 }
 
 
-#warning {
+#video_stream_warning {
     width: 560px;
     position: absolute;
     display: flex;
@@ -404,27 +420,32 @@ footer{
 }
 
 
-/* Download */
+/* Video Download */
 
-#dnld{
+#video-download{
     height: 84vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#dnld img{
+#video-download img{
     border-radius: 115px;
     transition-duration: 0.4s;
     border: 15px solid var(--level_0);
     -webkit-box-shadow: 0px 0px 60px -29px rgba(0,0,0,0.48);
--moz-box-shadow: 0px 0px 60px -29px rgba(0,0,0,0.48);
-box-shadow: 0px 0px 60px -29px rgba(0,0,0,0.48);
+    -moz-box-shadow: 0px 0px 60px -29px rgba(0,0,0,0.48);
+    box-shadow: 0px 0px 60px -29px rgba(0,0,0,0.48);
 }
 
-#dnld img:hover{
+#video-download img:hover{
     transform: scale(1.2);
     -webkit-box-shadow: 0px 29px 54px 0px rgba(0,0,0,0.93);
     -moz-box-shadow: 0px 29px 54px 0px rgba(0,0,0,0.93);
     box-shadow: 0px 29px 54px 0px rgba(0,0,0,0.93);
 }
+
+
+
+
+/* Playlist Link Page */

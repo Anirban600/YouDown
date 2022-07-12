@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block head %}
+<title>Welcome to YouSuck</title>
+{% endblock head %} {% block body %}
+<p id="index_heading">
+  Welcome to YouSuck.<br />
+  Please choose what you want to download
+</p>
+
+<div id="index_option_body">
+  <a href="{{ url_for('get_video_link') }}">
+    <div id="index_option_video" class="index_option">
+      <img
+        src="{{ url_for('static', filename='assets/yt_logo.svg') }}"
+        alt="yt_logo"
+      />
+      <p>Download Video</p>
+    </div>
+  </a>
+  <a href="{{ url_for('get_playlist_link') }}">
+    <div id="index_option_playlist" class="index_option">
+      <img
+        src="{{ url_for('static', filename='assets/pl_logo.png') }}"
+        alt="yt_logo"
+      />
+      <p>Download Playlist</p>
+    </div>
+  </a>
+</div>
+
+{% endblock body %}

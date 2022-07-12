@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block head %}
-<title>Get Playlist</title>
+<title>Enter Video Link</title>
 {% endblock head %} {% block body %}
-<p id="heading-video">Enter the YouTube Link of the Playlist</p>
+<p id="video_link_heading">Enter the YouTube Link of the Video</p>
 <script>
   function checker() {
-    link = document.getElementById("link");
+    link = document.getElementById("video_link_input");
     if (link.value.length == 0) {
       link.classList.remove("shake");
       void link.offsetWidth;
@@ -15,23 +15,23 @@
   }
 </script>
 <form
-  id="get_plist_link"
-  class="get_link"
-  action="/playlist"
+  id="video_link_form"
+  class="link_form"
+  action="/video_link"
   method="post"
   onsubmit="return checker()"
 >
   <input
+    id="video_link_input"
     type="text"
-    name="link"
-    id="p-link"
-    placeholder="Example https://youtube.com/playlist?list=PLgNJO2hghbmhHx"
+    name="video_link"
+    placeholder="Example https://www.youtube.com/watch?v=FMNC-XKWQBE"
   />
-  <button type="submit">Get Playlist</button>
+  <button type="submit">Get Video</button>
 </form>
 
 {% if warn == True %}
-<div id="bad_link">
+<div id="video_link_error" claass="link_error">
   <p>Entered URL is invalid or Video not Found</p>
 </div>
 {% endif %} {% endblock body %}
