@@ -105,8 +105,7 @@ def get_stream():
 
 @app.route('/download_video', methods=['POST', 'GET'])
 def get_download():
-    path = ".\\static\\"
-    # path = "/app/static/"
+    path = "./static/"
     for file in os.listdir(path):
         if file[-4:] == ".mp4": os.remove(path+file)
     name = video.streams[int(choice)].default_filename
