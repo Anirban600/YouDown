@@ -127,6 +127,22 @@ def get_download():
 
 @app.route('/playlist')
 def get_playlist():
+    if request.method == 'POST':
+        global video
+        global streams
+        global max_audio
+        link = request.form['link']
+        try:
+            video = pytube.YouTube(link)
+        except:
+            return render_template('video.html', warn=True)
+        else:
+            streams = stream_manager(video.streams)
+            for i in streams:
+                if i[1] == 'a':
+                    max_audio = i[0]
+                    break
+            return redirect(url_for('get_stream'))
     return render_template('playlist.html')
 
 
