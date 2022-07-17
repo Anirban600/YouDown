@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+<title>Choose Playlist Videos & Quality</title>
+{% block head %} {% endblock head %} {% block body %}
+<script>
+  function make_check(val) {
+    obj = document.getElementById(val);
+    obj.checked = !obj.checked;
+
+    document.getElementById("playlist_streams_check_all").checked =
+      update_counter() == "{{length}}";
+  }
+
+  function update_counter() {
+    var obj = document.getElementById("playlist_streams_counter");
+    var c = document.querySelectorAll(
+      'input[name="stream_select"]:checked'
+    ).length;
+    obj.innerText = c.toString() + " / {{length}} Videos Selected.";
+    return c.toString();
+  }
+
+  function check_all() {
+    var obj = document.getElementById("playlist_streams_check_all");
+    document.querySelectorAll('input[name="stream_select"]').forEach((x) => {
+      x.checked = obj.checked;
+    });
+
+    update_counter();
+  }
+</script>
+<div id="playlist_streams_config"></div>
+<div id="playlist_streams_status">
+  <input
+    type="checkbox"
+    name="check_all"
+    id="playlist_streams_check_all"
+    onclick="check_all()"
+    checked
+  />
+  <label for="playlist_streams_check_all">Select All</label>
+  <span id="playlist_streams_counter"></span>
+</div>
+
+<div id="playlist_streams_videos">
+  {% for x in streams %}
+  <div class="playlist_streams_row" onclick="make_check('pstream_{{x[0]}}')">
+    <div class="playlist_streams_check">
+      <input
+        type="checkbox"
+        name="stream_select"
+        id="pstream_{{x[0]}}"
+        onchange="make_check('pstream_{{x[0]}}')"
+        checked
+      />
+    </div>
+    <div class="playlist_streams_index">{{x[0]}}</div>
+    <div class="playlist_streams_img"><img src="{{x[1]}}" /></div>
+    <div class="playlist_streams_name"><div>{{x[2]}}</div></div>
+    <div class="playlist_streams_length">{{x[3]}}</div>
+  </div>
+  {% endfor %}
+</div>
+<script>
+  update_counter();
+</script>
+{% endblock body %}

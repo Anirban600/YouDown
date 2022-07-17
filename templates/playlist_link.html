@@ -1,6 +1,20 @@
 {% extends 'base.html' %} {% block head %}
 <title>Enter Playlist Link</title>
 {% endblock head %} {% block body %}
+<script
+  src="https://unpkg.com/react@18/umd/react.development.js"
+  crossorigin
+></script>
+<script
+  src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  crossorigin
+></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='assets/bear.css') }}"
+/>
+
 <p id="playlist_link_heading">Enter the YouTube Link of the Playlist</p>
 <script>
   function checker() {
@@ -11,7 +25,18 @@
       link.classList.add("shake");
       return false;
     }
+    var obj = document.getElementById("move");
+    obj.style.transform = "translate(0, 75vh)";
     return true;
+  }
+
+  function close_bear() {
+    var obj = document.getElementById("move");
+    obj.style.transform = "translate(0, -125vh)";
+  }
+
+  if (performance.navigation.type == 1) {
+    close_bear();
   }
 </script>
 <form
@@ -34,4 +59,20 @@
 <div id="playlist_link_error" class="link_error">
   <p>Entered URL is invalid or Playlist not Found</p>
 </div>
-{% endif %} {% endblock body %}
+{% endif %}
+<div id="move">
+  <div id="full_dark"></div>
+  <div id="close_bear" onclick="close_bear()">
+    <img src="{{ url_for('static', filename='assets/close.png') }}" />
+  </div>
+  <div id="wait">This may take upto few minutes... Please be patient...</div>
+  <div id="ufo">
+    <img src="{{ url_for('static', filename='assets/ufo.gif') }}" alt="" />
+  </div>
+  <div id="color"></div>
+  <div id="bear_text">Turn Me On!!!</div>
+  <div id="app"></div>
+</div>
+<script src="{{ url_for('static', filename='assets/bear.js') }}"></script>
+
+{% endblock body %}

@@ -1,0 +1,216 @@
+#move{
+    position: absolute;
+    height: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translate(0, -125vh);
+    transition-duration: 1s;
+  }
+
+#move > #close_bear > img{
+    position: absolute;
+    top: 0;
+    left: 94%;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    transform: translate(0, -72vh);
+    cursor: pointer;
+}
+
+#full_dark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 93vh;
+    transform: translate(0, -75vh);
+    backdrop-filter: blur(15px);
+    background-color: hsla(329, 93%, 18%, 0.4);
+}
+
+#move > #ufo > img{
+    position: absolute;
+    top: 0;
+    left: calc((100% - 300px) / 2);
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    transform: translate(0, -52vh);
+}
+
+#move > #bear_text{
+    position: absolute;
+    top: 0;
+    left: calc((100% - 300px) / 2);
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    text-align: center;
+    font-size: 2.5em;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #3f142a;
+    transform: translate(0, -26vh);
+}
+
+#move > #wait{
+    position: absolute;
+    top: 0;
+    left: 30%;
+    right: 0;
+    bottom: 0;
+    width: 40%;
+    text-align: center;
+    font-size: 3em;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    color: #fff4fa;
+    transform: translate(0, -66vh);
+}
+
+  #move > #color{
+    position: absolute;
+    border-radius: 30px;
+    left: 50%;
+    width: 400px;
+    height: 350px;
+    transform: translate(-200px, -250px);
+    background-color: #ff99cc;
+  }
+
+  .mask {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 200px);
+    right: 10%;
+    bottom: 30%;
+    height: 100px;
+    width: 400px;
+    border-radius: 30px;
+    background: #ff99cc;
+    /* transform: translate(0, 20vh); */
+  }
+  .bear {
+    width: 100%;
+    background: transparent;
+    transform: translate(0, 100%);
+  }
+  .bear__swear {
+    display: none;
+    position: absolute;
+    left: 105%;
+    top: 0;
+    background: #fff;
+    font-weight: bolder;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .bear__swear:before {
+    content: '';
+    background: #fff;
+    position: absolute;
+    top: 90%;
+    right: 70%;
+    height: 30px;
+    width: 30px;
+    clip-path: polygon(0 100%, 100% 0, 50% 0);
+    -webkit-clip-path: polygon(0 100%, 100% 0, 50% 0);
+  }
+  .bear__wrap {
+    width: 100px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-15%, -50%) rotate(5deg) translate(0, -75%);
+    background: transparent;
+  }
+  .bear__arm-wrap {
+    background: transparent;
+    position: fixed;
+    height: 30px;
+    width: 90px;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(0, -50%) rotate(0deg);
+  }
+  .bear__arm {
+    background: transparent;
+    transform-origin: left;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-35%, -50%) scaleX(1);
+  }
+  .bear__paw {
+    background: #784421;
+    border-radius: 100%;
+    position: fixed;
+    height: 30px;
+    width: 30px;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform-origin: right;
+    transform: translate(80px, -15px) scaleX(0);
+  }
+  .checkbox {
+    border-radius: 50px;
+    height: 100px;
+    position: fixed;
+    width: 200px;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .checkbox [type='checkbox'] {
+    cursor: pointer;
+    border-radius: 50px;
+    position: absolute;
+    outline: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+  .checkbox__bg {
+    background: #aaa;
+    border-radius: 50px;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+  }
+  .checkbox__indicator {
+    background: transparent;
+    height: 100%;
+    width: 50%;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .checkbox__indicator:after {
+    content: '';
+    border-radius: 100%;
+    height: 85%;
+    width: 85%;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

@@ -64,7 +64,20 @@ def video_stream_manager(streams):
 
 
 def playlist_stream_manager(playlist):
-    pass
+    n = playlist.length
+    print(n)
+    all_videos = playlist.videos
+    print(all_videos)
+    print(len(all_videos))
+    res = []
+    for i in range(len(all_videos)):
+        print(i)
+        vid = all_videos[i]
+        res.append([i+1,
+                    vid.thumbnail_url,
+                    vid.title,
+                    time.strftime('%H:%M:%S', time.gmtime(vid.length))])
+    return res
 
 
 @app.route('/')
@@ -132,24 +145,23 @@ def get_video_download():
 def get_playlist_link():
     if request.method == 'POST':
         global playlist_obj
-        global playlist_videoss
+        global playlist_videos
         link = request.form['playlist_link']
         try:
             playlist_obj = pytube.Playlist(link)
-            print(link, playlist_obj, "passed")
             if not playlist_obj: raise Exception('Fraud URL')
-
         except:
             return render_template('playlist_link.html', warn=True)
         else:
-            playlist_videoss = playlist_stream_manager(playlist_obj)
+            playlist_videos = playlist_stream_manager(playlist_obj)
+            print(playlist_videos)
             return redirect(url_for('get_playlist_streams'))
     return render_template('playlist_link.html')
 
 
 @app.route('/playlist_streams', methods=['POST', 'GET'])
 def get_playlist_streams():
-    return "Hello World"
+    return render_template('playlist_streams.html', streams=playlist_videos, length=len(playlist_videos))
 
 
 if __name__ == "__main__":
